@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'custom_user',
 
     'cms',
+    'compressor',
     'djangocms_text_ckeditor',
     'menus',
     'sekizai',
@@ -132,6 +133,18 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'node_modules'),
+)
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
+
 
 # Django CMS
 # http://docs.django-cms.org/en/release-3.3.x/how_to/install.html
@@ -139,3 +152,16 @@ STATIC_URL = '/static/'
 CMS_TEMPLATES = (
     ('tkdgarching/page.html', 'Page'),
 )
+
+
+# Django compressor
+# https://django-compressor.readthedocs.io/en/latest/
+
+COMPRESS_PRECOMPILERS = [
+    ('text/scss', 'django_libsass.SassCompiler'),
+]
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSCompressorFilter',
+]
+COMPRESS_CSS_HASHING_METHOD = 'content'

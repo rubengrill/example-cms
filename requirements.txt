@@ -1,7 +1,10 @@
 Django==1.9.12
+csscompressor==0.9.4
 django-classy-tags==0.8.0
 django-cms==3.3.3
+django-compressor==2.1
 django-custom-user==0.6
+django-libsass==0.7
 django-sekizai==0.10.0
 django-treebeard==4.1.0
 djangocms-admin-style==1.2.6.2

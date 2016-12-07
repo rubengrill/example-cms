@@ -1,4 +1,5 @@
 {% load cms_tags %}
+{% load compress %}
 {% load menu_tags %}
 {% load sekizai_tags %}
 
@@ -11,6 +12,10 @@
         <title>{% page_attribute "page_title" %}</title>
 
         {% render_block "css" %}
+
+        {% compress css %}
+            <link rel="stylesheet" type="text/scss" href="/static/tkdgarching/scss/tkdgarching.scss">
+        {% endcompress %}
     </head>
     <body>
         {% cms_toolbar %}
