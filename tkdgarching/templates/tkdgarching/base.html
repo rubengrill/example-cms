@@ -1,11 +1,34 @@
+{% load cms_tags %}
+{% load menu_tags %}
+{% load sekizai_tags %}
+
 <!doctype html>
 <html lang="{{ LANGUAGE_CODE }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>{% page_attribute "page_title" %}</title>
+
+        {% render_block "css" %}
     </head>
     <body>
+        {% cms_toolbar %}
+
+        {% block menu %}
+            <ul>
+                {% show_menu %}
+            </ul>
+        {% endblock %}
+
+        {% block language_chooser %}
+            <ul>
+                {% language_chooser %}
+            </ul>
+        {% endblock %}
+
         {% block content %}{% endblock %}
+
+        {% render_block "js" %}
     </body>
 </html>

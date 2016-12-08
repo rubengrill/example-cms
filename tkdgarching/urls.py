@@ -3,11 +3,11 @@
 from __future__ import unicode_literals
 
 from django.conf.urls import include, url
+from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
-from django.views.generic import TemplateView
 
 
-urlpatterns = [
+urlpatterns = i18n_patterns(
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', TemplateView.as_view(template_name="tkdgarching/page.html")),
-]
+    url(r'^', include('cms.urls')),
+)

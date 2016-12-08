@@ -33,6 +33,8 @@ ALLOWED_HOSTS = []
 AUTH_USER_MODEL = 'custom_user.EmailUser'
 
 INSTALLED_APPS = (
+    'djangocms_admin_style',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,10 +45,17 @@ INSTALLED_APPS = (
 
     'custom_user',
 
+    'cms',
+    'djangocms_text_ckeditor',
+    'menus',
+    'sekizai',
+    'treebeard',
+
     'tkdgarching',
 )
 
 MIDDLEWARE_CLASSES = (
+    'cms.middleware.utils.ApphookReloadMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -56,6 +65,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'cms.middleware.user.CurrentUserMiddleware',
+    'cms.middleware.page.CurrentPageMiddleware',
+    'cms.middleware.toolbar.ToolbarMiddleware',
+    'cms.middleware.language.LanguageCookieMiddleware',
 )
 
 ROOT_URLCONF = 'tkdgarching.urls'
@@ -74,6 +87,8 @@ TEMPLATES = [
                 'django.template.context_processors.i18n',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'sekizai.context_processors.sekizai',
+                'cms.context_processors.cms_settings',
             ],
         },
     },
@@ -100,6 +115,7 @@ LANGUAGE_CODE = 'en-us'
 
 LANGUAGES = [
     ('en-us', 'English'),
+    ('de-de', 'German'),
 ]
 
 TIME_ZONE = 'UTC'
@@ -115,3 +131,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# Django CMS
+# http://docs.django-cms.org/en/release-3.3.x/how_to/install.html
+
+CMS_TEMPLATES = (
+    ('tkdgarching/page.html', 'Page'),
+)
