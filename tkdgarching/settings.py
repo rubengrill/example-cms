@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'compressor',
     'djangocms_text_ckeditor',
     'menus',
+    'parler',
     'sekizai',
     'treebeard',
 
@@ -152,6 +153,32 @@ STATICFILES_FINDERS = (
 CMS_TEMPLATES = (
     ('tkdgarching/page.html', 'Page'),
 )
+
+
+CMS_LANGUAGES = {
+    'default': {
+        'public': True,
+        'hide_untranslated': False,
+        'redirect_on_fallback': True,
+    },
+    1: [
+        {
+            'public': True,
+            'code': 'de-de',
+            'hide_untranslated': False,
+            'name': 'German',
+            'redirect_on_fallback': True,
+        },
+        {
+            'public': True,
+            'code': 'en-us',
+            'hide_untranslated': False,
+            'name': 'English',
+            'redirect_on_fallback': True,
+            'fallbacks': ['de-de'],
+        },
+    ],
+}
 
 
 # Django compressor

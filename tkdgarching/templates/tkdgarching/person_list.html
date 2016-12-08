@@ -1,0 +1,9 @@
+{% extends "tkdgarching/base.html" %}
+
+{% block content %}
+    <ul>
+        {% for person in person_list %}
+            <li><a href="{{ person.get_absolute_url }}">{{ person.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

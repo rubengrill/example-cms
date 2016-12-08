@@ -1,0 +1,11 @@
+{% extends "tkdgarching/base.html" %}
+
+{% load cms_tags %}
+
+{% block content %}
+    {% render_model_block person %}
+        <h1>{{ person.name }}</h1>
+
+        {{ person.content|safe }}
+    {% endrender_model_block %}
+{% endblock %}
