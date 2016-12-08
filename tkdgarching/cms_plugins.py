@@ -11,14 +11,20 @@ from tkdgarching import models
 
 @plugin_pool.register_plugin
 class EventPlugin(CMSPluginBase):
+    model = models.EventPluginModel
     render_template = 'tkdgarching/plugins/event.html'
 
     def render(self, context, instance, placeholder):
         context = super(EventPlugin, self).render(context, instance, placeholder)
-        context['event'] = (
-            models.Event.objects
-            .filter(translations__language_code=get_language())
-            .order_by('-date')
-            .first()
-        )
+
+        if instance.event:
+            context['event'] = instance.event
+        else:
+            context['event'] = (
+                models.Event.objects
+                .filter(translations__language_code=get_language())
+                .order_by('-date')
+                .first()
+            )
+
         return context

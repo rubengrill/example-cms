@@ -2,6 +2,7 @@
 
 from __future__ import unicode_literals
 
+from cms.models import CMSPlugin
 from django.core.urlresolvers import reverse
 from django.db import models
 from djangocms_text_ckeditor.fields import HTMLField
@@ -32,3 +33,7 @@ class Event(TranslatableModel):
 
     def __unicode__(self):
         return self.title
+
+
+class EventPluginModel(CMSPlugin):
+    event = models.ForeignKey(Event, null=True, blank=True)
