@@ -34,6 +34,10 @@
 
         {% block content %}{% endblock %}
 
+        {% block footer %}
+            {% static_placeholder "contact" %}
+        {% endblock %}
+
         {% render_block "js" %}
     </body>
 </html>
