@@ -181,6 +181,13 @@ CMS_LANGUAGES = {
 }
 
 
+CMS_PLACEHOLDER_CONF = {
+    'event': {
+        'plugins': ['EventPlugin'],
+    },
+}
+
+
 # Django compressor
 # https://django-compressor.readthedocs.io/en/latest/
 

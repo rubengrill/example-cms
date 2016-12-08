@@ -21,3 +21,14 @@ class Person(TranslatableModel):
 
     def __unicode__(self):
         return self.name
+
+
+class Event(TranslatableModel):
+    translations = TranslatedFields(
+        title=models.CharField(max_length=255),
+        content=HTMLField(),
+    )
+    date = models.DateTimeField()
+
+    def __unicode__(self):
+        return self.title

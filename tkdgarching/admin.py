@@ -19,3 +19,9 @@ class PersonAdmin(TranslatableAdmin):
         return {
             'slug': ('name',)
         }
+
+
+@admin.register(models.Event)
+class EventAdmin(TranslatableAdmin):
+    list_display = ('title',)
+    search_fields = ('translations__title',)
